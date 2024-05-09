@@ -22,9 +22,6 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
-app.get("/swagger", (req, res) => {
-  res.send("<h1>Hello</h1>")
-})
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));

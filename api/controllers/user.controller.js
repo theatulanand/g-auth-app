@@ -14,7 +14,11 @@ export const updateUser = async (req, res, next) => {
 
     console.log(req.body)
 
-    const { username, bio, phone, email, profilePicture, isPublicProfile } = req.body
+    const { username, bio, phone, email, profilePicture, isPublicProfile, userType } = req.body
+
+    if (userType) {
+      return next(errorHandler(401, "You can't change user type."))
+    }
 
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
